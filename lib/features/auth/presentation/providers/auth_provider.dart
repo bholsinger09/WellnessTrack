@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import '../../domain/models/user_model.dart';
+import '../../data/models/user_model.dart';
 import '../../data/repositories/auth_repository.dart';
 
 enum AuthStatus {
@@ -102,7 +102,7 @@ class AuthProvider extends ChangeNotifier {
       final currentUser = _authRepository.currentUser;
       
       if (currentUser != null) {
-        _user = await _authRepository.getUserData(currentUser.uid);
+        _user = await _authRepository.getUserData(currentUser.id);
         _setStatus(AuthStatus.authenticated);
       } else {
         _setStatus(AuthStatus.unauthenticated);

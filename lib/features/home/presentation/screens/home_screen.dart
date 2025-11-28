@@ -71,6 +71,12 @@ class HomeScreen extends StatelessWidget {
                   onTap: () => context.push(AppRouter.moodCheckIn),
                 ),
                 _FeatureCard(
+                  icon: Icons.history,
+                  title: 'Mood History',
+                  color: const Color(0xFFFF8C94),
+                  onTap: () => context.push(AppRouter.moodHistory),
+                ),
+                _FeatureCard(
                   icon: Icons.nightlight_round,
                   title: 'Sleep & Study',
                   color: const Color(0xFF6B4CE6),

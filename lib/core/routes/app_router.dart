@@ -3,6 +3,7 @@ import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/signup_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/mood_tracking/presentation/screens/mood_check_in_screen.dart';
+import '../../features/mood_tracking/presentation/screens/mood_history_screen.dart';
 import '../../features/sleep_study/presentation/screens/sleep_study_screen.dart';
 import '../../features/meditation/presentation/screens/meditation_screen.dart';
 import '../../features/chat/presentation/screens/chat_screen.dart';
@@ -13,6 +14,7 @@ class AppRouter {
   static const String signup = '/signup';
   static const String home = '/home';
   static const String moodCheckIn = '/mood-check-in';
+  static const String moodHistory = '/mood-history';
   static const String sleepStudy = '/sleep-study';
   static const String meditation = '/meditation';
   static const String chat = '/chat';
@@ -36,6 +38,10 @@ class AppRouter {
       GoRoute(
         path: moodCheckIn,
         builder: (context, state) => const MoodCheckInScreen(),
+      ),
+      GoRoute(
+        path: moodHistory,
+        builder: (context, state) => const MoodHistoryScreen(),
       ),
       GoRoute(
         path: sleepStudy,

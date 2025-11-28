@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 import '../../domain/models/mood_log.dart';
+import '../providers/mood_provider.dart';
 
 class MoodCheckInScreen extends StatefulWidget {
   const MoodCheckInScreen({Key? key}) : super(key: key);
@@ -35,7 +37,9 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
       timestamp: DateTime.now(),
     );
 
-    // TODO: Save to Firebase
+    // Save to provider
+    context.read<MoodProvider>().addMoodLog(moodLog);
+    
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Mood logged successfully!')),
     );
