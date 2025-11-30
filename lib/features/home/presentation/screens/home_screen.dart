@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../../core/routes/app_router.dart';
 import '../../../../core/widgets/install_prompt.dart';
+import '../../../../core/providers/theme_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,12 +13,92 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authProvider = context.watch<AuthProvider>();
+    final themeProvider = context.watch<ThemeProvider>();
     final user = authProvider.user;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Wellness Tracker'),
         actions: [
+          PopupMenuButton<ThemeMode>(
+            icon: Icon(
+              themeProvider.themeMode == ThemeMode.dark
+                  ? Icons.dark_mode
+                  : themeProvider.themeMode == ThemeMode.light
+                      ? Icons.light_mode
+                      : Icons.brightness_auto,
+            ),
+            tooltip: 'Theme: ${themeProvider.themeModeLabel}',
+            onSelected: (mode) => themeProvider.setThemeMode(mode),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: ThemeMode.light,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.light_mode,
+                      color: themeProvider.themeMode == ThemeMode.light
+                          ? Theme.of(context).colorScheme.primary
+                          : null,
+                    ),
+                    const SizedBox(width: 12),
+                    Text(
+                      'Light',
+                      style: TextStyle(
+                        fontWeight: themeProvider.themeMode == ThemeMode.light
+                            ? FontWeight.bold
+                            : null,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: ThemeMode.dark,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.dark_mode,
+                      color: themeProvider.themeMode == ThemeMode.dark
+                          ? Theme.of(context).colorScheme.primary
+                          : null,
+                    ),
+                    const SizedBox(width: 12),
+                    Text(
+                      'Dark',
+                      style: TextStyle(
+                        fontWeight: themeProvider.themeMode == ThemeMode.dark
+                            ? FontWeight.bold
+                            : null,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: ThemeMode.system,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.brightness_auto,
+                      color: themeProvider.themeMode == ThemeMode.system
+                          ? Theme.of(context).colorScheme.primary
+                          : null,
+                    ),
+                    const SizedBox(width: 12),
+                    Text(
+                      'System',
+                      style: TextStyle(
+                        fontWeight: themeProvider.themeMode == ThemeMode.system
+                            ? FontWeight.bold
+                            : null,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {

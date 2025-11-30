@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 // import 'firebase_options.dart';
 import 'core/theme/app_theme.dart';
 import 'core/routes/app_router.dart';
+import 'core/providers/theme_provider.dart';
 import 'features/auth/presentation/providers/auth_provider.dart';
 import 'features/mood_tracking/presentation/providers/mood_provider.dart';
 import 'features/sleep_study/presentation/providers/sleep_study_provider.dart';
@@ -31,17 +32,22 @@ class WellnessTrackerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => MoodProvider()),
         ChangeNotifierProvider(create: (_) => SleepStudyProvider()),
       ],
-      child: MaterialApp.router(
-        title: 'Wellness Tracker',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system,
-        routerConfig: AppRouter.router,
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp.router(
+            title: 'Wellness Tracker',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: themeProvider.themeMode,
+            routerConfig: AppRouter.router,
+          );
+        },
       ),
     );
   }
