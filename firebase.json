@@ -1,51 +1,51 @@
 {
-  "flutter": {
-    "platforms": {
-      "dart": {
-        "lib/firebase_options.dart": {
-          "projectId": "trackwellness-ecbcb",
-          "configurations": {
-            "android": "1:921525674036:android:6112133f08b7d50343ea61",
-            "ios": "1:921525674036:ios:5600c23ed6c7fb2343ea61",
-            "macos": "1:921525674036:ios:66ec40680c43986b43ea61",
-            "web": "1:921525674036:web:316e9fd157846e2243ea61"
-          }
+    "flutter": {
+        "platforms": {
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "trackwellness-ecbcb",
+                    "configurations": {
+                        "android": "1:921525674036:android:6112133f08b7d50343ea61",
+                        "ios": "1:921525674036:ios:5600c23ed6c7fb2343ea61",
+                        "macos": "1:921525674036:ios:66ec40680c43986b43ea61",
+                        "web": "1:921525674036:web:316e9fd157846e2243ea61"
+                    }
+                }
+            }
         }
-      }
+    },
+    "hosting": {
+        "public": "build/web",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ],
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ],
+        "headers": [
+            {
+                "source": "**/*.@(js|css|svg|woff|woff2|ttf|eot)",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=31536000"
+                    }
+                ]
+            },
+            {
+                "source": "manifest.json",
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/manifest+json"
+                    }
+                ]
+            }
+        ]
     }
-  },
-  "hosting": {
-    "public": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
-    "headers": [
-      {
-        "source": "**/*.@(js|css|svg|woff|woff2|ttf|eot)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=31536000"
-          }
-        ]
-      },
-      {
-        "source": "manifest.json",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "application/manifest+json"
-          }
-        ]
-      }
-    ]
-  }
 }
