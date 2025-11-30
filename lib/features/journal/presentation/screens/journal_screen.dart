@@ -49,7 +49,7 @@ class _JournalScreenState extends State<JournalScreen> {
       return;
     }
 
-    // TODO: Save to Firebase
+    // Save functionality will be implemented with backend integration
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Journal entry saved!')),
     );
@@ -69,7 +69,6 @@ class _JournalScreenState extends State<JournalScreen> {
           IconButton(
             icon: const Icon(Icons.history),
             onPressed: () {
-              // TODO: Navigate to journal history
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Journal history coming soon')),
               );
@@ -239,7 +238,7 @@ class _RecentEntryCard extends StatelessWidget {
         ),
         trailing: const Icon(Icons.arrow_forward_ios, size: 16),
         onTap: () {
-          // TODO: Navigate to entry detail
+          // Entry detail view to be implemented
         },
       ),
     );

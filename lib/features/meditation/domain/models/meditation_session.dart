@@ -1,4 +1,6 @@
-class MeditationSession {
+import 'package:equatable/equatable.dart';
+
+class MeditationSession extends Equatable {
   final String id;
   final String userId;
   final DateTime startTime;
@@ -7,7 +9,7 @@ class MeditationSession {
   final String? meditationType;
   final String? notes;
 
-  MeditationSession({
+  const MeditationSession({
     required this.id,
     required this.userId,
     required this.startTime,
@@ -16,6 +18,9 @@ class MeditationSession {
     this.meditationType,
     this.notes,
   });
+
+  @override
+  List<Object?> get props => [id, userId, startTime, endTime, durationMinutes, meditationType, notes];
 
   factory MeditationSession.fromJson(Map<String, dynamic> json) {
     return MeditationSession(

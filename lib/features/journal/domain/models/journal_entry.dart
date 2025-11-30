@@ -1,4 +1,6 @@
-class JournalEntry {
+import 'package:equatable/equatable.dart';
+
+class JournalEntry extends Equatable {
   final String id;
   final String userId;
   final String content;
@@ -7,7 +9,7 @@ class JournalEntry {
   final String? aiResponse;
   final List<String> tags;
 
-  JournalEntry({
+  const JournalEntry({
     required this.id,
     required this.userId,
     required this.content,
@@ -16,6 +18,9 @@ class JournalEntry {
     this.aiResponse,
     this.tags = const [],
   });
+
+  @override
+  List<Object?> get props => [id, userId, content, createdAt, updatedAt, aiResponse, tags];
 
   factory JournalEntry.fromJson(Map<String, dynamic> json) {
     return JournalEntry(

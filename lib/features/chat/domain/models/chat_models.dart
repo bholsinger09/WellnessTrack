@@ -1,4 +1,6 @@
-class ChatMessage {
+import 'package:equatable/equatable.dart';
+
+class ChatMessage extends Equatable {
   final String id;
   final String roomId;
   final String senderId;
@@ -7,7 +9,7 @@ class ChatMessage {
   final DateTime timestamp;
   final bool isDeleted;
 
-  ChatMessage({
+  const ChatMessage({
     required this.id,
     required this.roomId,
     required this.senderId,
@@ -16,6 +18,9 @@ class ChatMessage {
     required this.timestamp,
     this.isDeleted = false,
   });
+
+  @override
+  List<Object?> get props => [id, roomId, senderId, senderDisplayName, message, timestamp, isDeleted];
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) {
     return ChatMessage(
@@ -42,20 +47,23 @@ class ChatMessage {
   }
 }
 
-class ChatRoom {
+class ChatRoom extends Equatable {
   final String id;
   final String name;
   final String? description;
   final DateTime createdAt;
   final List<String> participantIds;
 
-  ChatRoom({
+  const ChatRoom({
     required this.id,
     required this.name,
     this.description,
     required this.createdAt,
     required this.participantIds,
   });
+
+  @override
+  List<Object?> get props => [id, name, description, createdAt, participantIds];
 
   factory ChatRoom.fromJson(Map<String, dynamic> json) {
     return ChatRoom(

@@ -1,17 +1,22 @@
-class UserModel {
+import 'package:equatable/equatable.dart';
+
+class UserModel extends Equatable {
   final String id;
   final String email;
   final String? displayName;
   final DateTime createdAt;
   final bool isAnonymous;
 
-  UserModel({
+  const UserModel({
     required this.id,
     required this.email,
     this.displayName,
     required this.createdAt,
     this.isAnonymous = false,
   });
+
+  @override
+  List<Object?> get props => [id, email, displayName, createdAt, isAnonymous];
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
