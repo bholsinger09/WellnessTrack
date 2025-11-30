@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../../core/routes/app_router.dart';
+import '../../../../core/widgets/install_prompt.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,11 +29,15 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      body: Column(
+        children: [
+          if (kIsWeb) const InstallPrompt(),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -103,7 +109,10 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ],
-        ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
